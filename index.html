@@ -267,6 +267,43 @@
             }
         }
 
+        .info-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+            border: 1px solid rgba(233, 69, 96, 0.4);
+            border-radius: 16px;
+            padding: 24px 40px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.75em;
+            color: #e94560;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 1em;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .info-divider {
+            width: 1px;
+            background: rgba(233, 69, 96, 0.3);
+            align-self: stretch;
+        }
+
         .footer {
             text-align: center;
             color: #fff;
@@ -281,6 +318,28 @@
     <div class="container">
         <h1>📜 Evolución de la Administración en México</h1>
         <p class="subtitle">Un viaje a través del tiempo: De los mexicas a la era digital</p>
+
+        <div class="info-card">
+            <div class="info-item">
+                <div class="info-label">👨‍🎓 Alumno</div>
+                <div class="info-value">Juan Pablo Hernández Alvarado</div>
+            </div>
+            <div class="info-divider"></div>
+            <div class="info-item">
+                <div class="info-label">👩‍🏫 Maestra</div>
+                <div class="info-value">Araceli Franco Aguirre</div>
+            </div>
+            <div class="info-divider"></div>
+            <div class="info-item">
+                <div class="info-label">🏫 Escuela</div>
+                <div class="info-value">Luis Aguirre Benavides</div>
+            </div>
+            <div class="info-divider"></div>
+            <div class="info-item">
+                <div class="info-label">🎒 Salón</div>
+                <div class="info-value">4C</div>
+            </div>
+        </div>
 
         <div class="timeline">
             <!-- Época Prehispánica -->
@@ -377,7 +436,8 @@
         </div>
 
         <div class="footer">
-            📚 Línea del Tiempo: Evolución de la Administración en México | Diseñada para comprender la transformación administrativa a través de las épocas
+            📚 Línea del Tiempo: Evolución de la Administración en México<br>
+            Juan Pablo Hernández Alvarado · Maestra: Araceli Franco Aguirre · Salón 4C · Escuela Luis Aguirre Benavides
         </div>
     </div>
 </body>
