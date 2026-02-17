@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolución de la Administración en México</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #333;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #e94560;
+            font-size: 1.2em;
+            margin-bottom: 60px;
+            font-style: italic;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #e94560, #0f3460, #e94560, #16c784);
+            border-radius: 3px;
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 80px;
+            width: 45%;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+        .timeline-item:nth-child(5) { animation-delay: 1s; }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 55%;
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 3px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.4);
+            border-color: #e94560;
+        }
+
+        .timeline-item.left .timeline-content::before {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid #ffffff;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+
+        .timeline-item.right .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-right: 20px solid #ffffff;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            background: #e94560;
+            border: 5px solid #fff;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.6);
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(233, 69, 96, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(233, 69, 96, 1);
+                transform: translateY(-50%) scale(1.1);
+            }
+        }
+
+        .timeline-item.left .timeline-marker {
+            right: -65px;
+        }
+
+        .timeline-item.right .timeline-marker {
+            left: -65px;
+        }
+
+        .period-title {
+            font-size: 2em;
+            color: #e94560;
+            margin-bottom: 15px;
+            font-weight: bold;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 10px;
+        }
+
+        .period-subtitle {
+            font-size: 1.2em;
+            color: #0f3460;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .period-content {
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .period-content ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .period-content li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .period-content li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            font-size: 1.2em;
+        }
+
+        .period-content strong {
+            color: #0f3460;
+            font-weight: bold;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Colores específicos por época */
+        .prehispanica .timeline-marker { background: #8b4513; }
+        .prehispanica .icon { background: linear-gradient(135deg, #8b4513, #d4a574); }
+        
+        .colonial .timeline-marker { background: #c19a6b; }
+        .colonial .icon { background: linear-gradient(135deg, #c19a6b, #8b7355); }
+        
+        .reforma .timeline-marker { background: #146b3a; }
+        .reforma .icon { background: linear-gradient(135deg, #146b3a, #165b33); }
+        
+        .siglo21-1 .timeline-marker { background: #2563eb; }
+        .siglo21-1 .icon { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+        
+        .siglo21-2 .timeline-marker { background: #16c784; }
+        .siglo21-2 .icon { background: linear-gradient(135deg, #16c784, #059669); }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 70px;
+            }
+
+            .timeline-item .timeline-marker {
+                left: 15px !important;
+                right: auto !important;
+            }
+
+            .timeline-content::before {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            color: #fff;
+            margin-top: 60px;
+            padding: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 Evolución de la Administración en México</h1>
+        <p class="subtitle">Un viaje a través del tiempo: De los mexicas a la era digital</p>
+
+        <div class="timeline">
+            <!-- Época Prehispánica -->
+            <div class="timeline-item left prehispanica">
+                <div class="timeline-content">
+                    <div class="icon">🏛️</div>
+                    <div class="period-title">Época Prehispánica</div>
+                    <div class="period-subtitle">Horizonte Postclásico - Mexicas</div>
+                    <div class="period-content">
+                        <ul>
+                            <li><strong>Planeación:</strong> Diseño estratégico de Tenochtitlan sobre un lago; ingeniería avanzada (diques y acueductos) y sistema de chinampas para seguridad alimentaria.</li>
+                            <li><strong>Organización:</strong> Basada en el Calpulli (unidades operativas autónomas).</li>
+                            <li><strong>Educación:</strong> Calmécac (nobleza: política, religión y derecho) y Telpochcalli (pueblo: técnica y militar).</li>
+                            <li><strong>Dirección:</strong> Liderazgo consultivo del Huey Tlatoani apoyado por el Consejo Supremo (Tlatocán).</li>
+                            <li><strong>Control:</strong> Sistema de tributos (Calpixques como auditores) y correos rápidos (Paynanis).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+
+            <!-- Época Colonial -->
+            <div class="timeline-item right colonial">
+                <div class="timeline-content">
+                    <div class="icon">⚜️</div>
+                    <div class="period-title">Época Colonial</div>
+                    <div class="period-subtitle">1521 - 1810</div>
+                    <div class="period-content">
+                        <ul>
+                            <li><strong>Estructura:</strong> Sistema jerárquico, centralizado y burocrático bajo el mando de la Corona Española y el Virrey.</li>
+                            <li><strong>Administración:</strong> Creación del Virreinato (1535) y aplicación del Derecho Indiano.</li>
+                            <li><strong>Sistemas de Trabajo:</strong> Encomienda, peonaje, obrajes (manufactura textil) y haciendas agrícolas.</li>
+                            <li><strong>Economía:</strong> Control estricto de minería y agricultura; cobro de impuestos como el Quinto Real.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+
+            <!-- La Reforma y el Porfiriato -->
+            <div class="timeline-item left reforma">
+                <div class="timeline-content">
+                    <div class="icon">⚖️</div>
+                    <div class="period-title">La Reforma y el Porfiriato</div>
+                    <div class="period-subtitle">1857 - 1911</div>
+                    <div class="period-content">
+                        <ul>
+                            <li><strong>La Reforma:</strong> Consolidación del Estado laico, separación Iglesia-Estado (Leyes de Reforma de Benito Juárez) y nacionalización de bienes eclesiásticos.</li>
+                            <li><strong>Porfiriato:</strong> Lema "Poca política y mucha administración".</li>
+                            <li><strong>Gestión de Díaz:</strong> Centralización del poder, fomento a la inversión extranjera, modernización de infraestructura (ferrocarriles y telégrafos) y crecimiento económico con alta desigualdad social.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+
+            <!-- Siglo XXI - Años 2000 -->
+            <div class="timeline-item right siglo21-1">
+                <div class="timeline-content">
+                    <div class="icon">💻</div>
+                    <div class="period-title">La Administración en el Siglo XXI</div>
+                    <div class="period-subtitle">Años 2000 - Actualidad</div>
+                    <div class="period-content">
+                        <ul>
+                            <li><strong>Transición y Modernización (2000):</strong> Inicio de la alternancia política con Vicente Fox. Se enfocó en la transparencia, rendición de cuentas y la implementación de sistemas digitales en la administración pública.</li>
+                            <li><strong>Globalización:</strong> Consolidación de México en mercados internacionales y adopción de estándares globales de calidad y gestión.</li>
+                            <li><strong>Era Digital:</strong> Uso de Tecnologías de la Información (TICs) para trámites gubernamentales (Gobierno Digital) y mayor eficiencia en la gestión de recursos.</li>
+                            <li><strong>Enfoque Actual:</strong> Gestión basada en resultados, combate a la corrupción, sostenibilidad y responsabilidad social en las organizaciones.</li>
+                            <li><strong>Retos Modernos:</strong> Adaptación a la economía digital, gestión de crisis (como la pandemia) y la importancia del capital humano y la innovación.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+
+            <!-- Siglo XXI - Contemporáneo -->
+            <div class="timeline-item left siglo21-2">
+                <div class="timeline-content">
+                    <div class="icon">🚀</div>
+                    <div class="period-title">Administración Contemporánea y Globalizada</div>
+                    <div class="period-subtitle">Siglo XXI</div>
+                    <div class="period-content">
+                        <ul>
+                            <li><strong>Evolución Organizacional:</strong> Paso de estructuras rígidas a modelos más flexibles, adaptables y orientados al cliente/ciudadano.</li>
+                            <li><strong>Capital Humano:</strong> Enfoque en el talento, la capacitación constante, el liderazgo transformacional y el bienestar del trabajador.</li>
+                            <li><strong>Tecnología e Innovación:</strong> Integración total de la Inteligencia Artificial, el Big Data y el comercio electrónico en los procesos administrativos.</li>
+                            <li><strong>Sostenibilidad y Ética:</strong> Prioridad en la Responsabilidad Social Empresarial (RSE), el cuidado del medio ambiente y la transparencia ética en la toma de decisiones.</li>
+                            <li><strong>Gestión del Cambio:</strong> Capacidad de respuesta ante entornos globales inciertos (VUCA) y la importancia de la agilidad organizacional.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            📚 Línea del Tiempo: Evolución de la Administración en México | Diseñada para comprender la transformación administrativa a través de las épocas
+        </div>
+    </div>
+</body>
+</html>
